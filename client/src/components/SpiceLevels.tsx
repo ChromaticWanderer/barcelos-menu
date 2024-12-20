@@ -20,24 +20,24 @@ interface SpiceLevelsProps {
 
 export function SpiceLevels({ className }: SpiceLevelsProps) {
   return (
-    <div className={cn("flex items-center gap-6", className)}>
+    <div className={cn("flex items-center gap-4", className)}>
       {spiceLevels.map((level) => (
-        <div key={level.id} className="flex flex-col items-center gap-2">
-          <div className="flex items-center gap-2">
-            <div className={cn(
-              "w-8 h-8 rounded-full flex items-center justify-center text-black font-bold text-xs tracking-tight shadow-lg",
-              level.color
-            )}>
-              {level.id}
-            </div>
-            <img
-              src={`/chili-${level.id.toLowerCase()}.svg`}
-              alt=""
-              className="w-6 h-6 -scale-x-100"
-            />
+        <div key={level.id} className="flex flex-col items-center gap-1.5">
+          <div className={cn(
+            "w-10 h-10 rounded-full flex items-center justify-center text-black font-bold text-sm shadow-lg ring-2 ring-white/10",
+            level.color
+          )}>
+            {level.id}
           </div>
-          <div className="text-[11px] text-white font-medium text-center whitespace-nowrap">
-            {level.name}
+          <div className="flex flex-col items-center">
+            {level.name === "Tangy Lemon" ? (
+              <>
+                <div className="text-[11px] leading-tight text-white font-medium">Tangy</div>
+                <div className="text-[11px] leading-tight text-white font-medium">Lemon</div>
+              </>
+            ) : (
+              <div className="text-[11px] leading-tight text-white font-medium">{level.name}</div>
+            )}
           </div>
         </div>
       ))}
