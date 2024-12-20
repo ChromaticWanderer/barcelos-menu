@@ -30,7 +30,7 @@ export function Menu() {
     // Scroll to category section
     const element = document.getElementById(category);
     if (element) {
-      const headerOffset = 160; // Account for fixed header height and padding
+      const headerOffset = 200; // Account for fixed header height (logo + navigation) and padding
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -107,7 +107,7 @@ export function Menu() {
                 }
               }}
               viewport={{ once: true, margin: "-100px" }}
-              className={`scroll-mt-48 rounded-xl mb-8 bg-gradient-to-b ${bgColor} to-transparent`}
+              className={`scroll-mt-64 rounded-xl mb-8 bg-gradient-to-b ${bgColor} to-transparent`}
             >
               <motion.div 
                 className="px-4 py-8"
