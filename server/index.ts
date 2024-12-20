@@ -56,7 +56,7 @@ const server = createServer(app);
 // Start server
 (async () => {
   try {
-    // Setup Vite in development or serve static files in production
+    // Setup Vite or static files before starting server
     if (process.env.NODE_ENV === "production") {
       serveStatic(app);
     } else {
@@ -80,7 +80,7 @@ const server = createServer(app);
         }
       });
     };
-    
+
     startServer();
 
     // Graceful shutdown handler
