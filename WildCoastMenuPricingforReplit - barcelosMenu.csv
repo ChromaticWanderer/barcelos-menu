@@ -1,0 +1,75 @@
+id,category_id,name,price,image_url
+135,27,1/4 Chicken and one side,R82.90,https://barcelos.co.za/wp-content/uploads/2021/07/grill-quarter-chicken-430x430-1.png
+136,27,1/2 Chicken and one side,R136.00,https://barcelos.co.za/wp-content/uploads/2021/07/grill-half-chicken-430x430-1.png
+137,27,Whole Chicken and one side,R236.90,https://barcelos.co.za/wp-content/uploads/2021/07/grill-full-chicken-430x430-1.png
+138,28,Tasty Twins,R79.90,https://barcelos.co.za/wp-content/uploads/2021/07/combos-tasty-twins-430x430-1.png
+139,28,Chicken Meal,R95.90,https://barcelos.co.za/wp-content/uploads/2021/07/combos-chicken-meal-430x430-2.png
+140,28,Chicken Burger Combo,R88.90,https://barcelos.co.za/wp-content/uploads/2021/07/combos-chicken-burger-430x430-1.png
+141,28,Chicken Schwarma Combo,R107.90,https://barcelos.co.za/wp-content/uploads/2021/07/combos-chicken-schwarma-430x430-1.png
+142,28,Kebab Meal,R105.90,https://barcelos.co.za/wp-content/uploads/2021/07/combos-kebab-meal-430x430-1.png
+143,28,Portuguese Galito Roll,R90.90,https://barcelos.co.za/wp-content/uploads/2021/07/combos-galito-roll-430x430-1.png
+144,28,Super Ayoba Combo,R79.90,https://barcelos.co.za/wp-content/uploads/2021/07/local-favs-super-bafana-430x430-1.png
+145,28,Chicken Cheese Burger,R95.90,https://barcelos.co.za/wp-content/uploads/2023/08/cheese-burger.png
+1,29,Thumbs Up Feast,R215.90,https://barcelos.co.za/wp-content/uploads/2021/06/barcelos-thumbs-up-feast-430x430-1.jpg
+146,29,Half Pack,R166.90,https://barcelos.co.za/wp-content/uploads/2023/08/half-pack.png
+147,29,Family Pack,R329.90,https://barcelos.co.za/wp-content/uploads/2021/07/family-family-pack-430x430-2.png
+148,29,Super Family Pack,R431.90,https://barcelos.co.za/wp-content/uploads/2023/08/super-family-pack.png
+154,30,Smash Chicken Burger and one side,R72.90,https://barcelos.co.za/wp-content/uploads/2021/07/bgs-budget-burger-430x430-2.png
+151,30,Chicken Burger and one side,R88.90,https://barcelos.co.za/wp-content/uploads/2023/08/chicken-burger.png
+155,30,Beef Burger and one side,R93.90,https://barcelos.co.za/wp-content/uploads/2021/07/bgs-beef-burger-430x430-2.png
+152,30,Chicken Prego and one side,R90.90,https://barcelos.co.za/wp-content/uploads/2021/07/bgs-prego-roll-chicken-430x430-1.png
+149,30,Beef Prego and one side,R107.90,https://barcelos.co.za/wp-content/uploads/2021/07/bgs-beef-prego-430x430-2.png
+153,30,Chicken Schwarma and one side,R107.90,https://barcelos.co.za/wp-content/uploads/2021/07/bgs-chicken-schwarma-430x430-1.png
+150,30,Beef Schwarma and one side,R116.90,https://barcelos.co.za/wp-content/uploads/2021/07/bgs-beef-schwarma-430x430-2.png
+156,30,Double Delicious and one side,R119.90,https://barcelos.co.za/wp-content/uploads/2021/07/combos-double-delicious-430x430-1.png
+163,33,Chicken Livers and one side,R61.90,https://barcelos.co.za/wp-content/uploads/2021/07/especially-chicken-livers-430x430-1.gif
+162,33,Chicken Kebab in Roll and one side,R46.90,https://barcelos.co.za/wp-content/uploads/2021/07/especially-chicken-kebab-in-roll-430x430-1.gif
+166,33,6 Dippa Wings and one side,R64.90,https://barcelos.co.za/wp-content/uploads/2021/07/especially-6-dippa-wings-430x430-1.gif
+167,33,Portuguese Galito Roll and one side,R65.90,https://barcelos.co.za/wp-content/uploads/2023/08/galito-roll.png
+165,33,2 Kebabs and one side,R64.90,https://barcelos.co.za/wp-content/uploads/2021/07/especially-two-kebabs-430x430-1.png
+164,33,Chicken Trinchado,R68.90,https://barcelos.co.za/wp-content/uploads/2021/07/especially-trinchado-430x430-2.png
+157,31,Ayoba Meal,R50.90,https://barcelos.co.za/wp-content/uploads/2021/07/favs-bafana-meal-430x430-1.png
+158,31,Super Ayoba Meal,R79.90,https://barcelos.co.za/wp-content/uploads/2021/07/favs-super-bafana-meal-430x430-1.png
+159,31,Mega Ayoba Meal,R119.90,https://barcelos.co.za/wp-content/uploads/2021/07/favs-mega-bafana-meal-430x430-1.gif
+2,34,Regular Garden Salad,R32.90,
+169,34,Medium Garden Salad,R43.90,https://barcelos.co.za/wp-content/uploads/2021/07/salads-garden-salad-430x430-3.png
+3,34,Large Garden Salad,R51.90,
+171,34,Medium Mediterranean Salad,R56.90,https://barcelos.co.za/wp-content/uploads/2021/07/salads-mediterranean-Salad-430x430-1.png
+172,34,Large Mediterranean Salad,R69.90,https://barcelos.co.za/wp-content/uploads/2021/07/salads-mediterranean-Salad-430x430-1.png
+173,34,Regular Chicken Salad,R73.90,https://barcelos.co.za/wp-content/uploads/2021/07/salads-chicken-salad-430x430-2.png
+174,34,Large Chicken Salad,R88.90,https://barcelos.co.za/wp-content/uploads/2021/07/salads-chicken-salad-430x430-2.png
+187,37,Regular Fries,R31.90,https://barcelos.co.za/wp-content/uploads/2021/07/sides-chips-430x430-2.png
+188,37,Medium Fries,R40.90,https://barcelos.co.za/wp-content/uploads/2021/07/sides-chips-430x430-2.png
+189,37,Large Fries,R47.90,https://barcelos.co.za/wp-content/uploads/2021/07/sides-chips-430x430-2.png
+181,37,Regular Pap & Tomato Relish,R31.90,https://barcelos.co.za/wp-content/uploads/2021/07/sides-pap-and-relish-430x430-1.gif
+4,37,Medium Pap & Tomato Relish,R40.90,
+5,37,Large Pap & Tomato Relish,R47.90,
+180,37,Regular Potato Wedges,R31.90,https://barcelos.co.za/wp-content/uploads/2021/07/sides-wedges-430x430-1.gif
+6,37,Medium Potato Wedges,R40.90,
+7,37,Large Potato Wedges,R47.90,
+182,37,Regular Spicy Rice,R31.90,https://barcelos.co.za/wp-content/uploads/2021/07/sides-spicy-rice-430x430-1.gif
+8,37,Medium Spicy Rice,R40.90,
+9,37,Large Spicy Rice,R47.90,
+183,37,Regular 3 Bean Salad,R31.90,https://barcelos.co.za/wp-content/uploads/2021/07/sides-3-bean-430x430-1.png
+10,37,Medium 3 Bean Salad,R40.90,
+11,37,Large 3 Bean Salad,R47.90,
+184,37,Regular Coleslaw,R31.90,https://barcelos.co.za/wp-content/uploads/2021/07/sides-coleslaw-430x430-2.png
+185,37,Medium Coleslaw,R40.90,https://barcelos.co.za/wp-content/uploads/2021/07/sides-coleslaw-430x430-2.png
+186,37,Large Coleslaw,R47.90,https://barcelos.co.za/wp-content/uploads/2021/07/sides-coleslaw-430x430-2.png
+160,32,Chicken Bowl,R67.90,https://barcelos.co.za/wp-content/uploads/2021/07/bowls-chicken-bowl-430x430-2.png
+161,32,Beef Bowl,R83.90,https://barcelos.co.za/wp-content/uploads/2021/07/bowls-beef-430x430-1.png
+175,35,Veggie Burger,R100.90,https://barcelos.co.za/wp-content/uploads/2021/07/vegetarian-burger-with-chips-430x430-1.png
+176,35,Veggie Bowl,R100.90,https://barcelos.co.za/wp-content/uploads/2021/07/bowl-vegeterian-430x430-1.png
+177,35,Veggie Schwarma,R100.90,https://barcelos.co.za/wp-content/uploads/2021/07/vegetarian-schwarma-with-chips-430x430-1.png
+178,36,Kids Burger Meal,R87.90,https://barcelos.co.za/wp-content/uploads/2023/08/kids-burger-meal-2023-430x430-1.png
+179,36,Kids Crumbed Chicken Strips & Chips,R87.90,https://barcelos.co.za/wp-content/uploads/2021/07/kiddies-crumbed-chicken-strips-430x430-1.png
+190,38,Mini Breakfast,R53.90,https://barcelos.co.za/wp-content/uploads/2021/07/breakfast-mini-430x430-1.png
+191,38,Cheesy Egg in Pita,R71.90,https://barcelos.co.za/wp-content/uploads/2021/07/breakfast-cheesy-egg-in-pita.png
+192,38,Drifter Breakfast,R91.90,https://barcelos.co.za/wp-content/uploads/2021/07/breakfast-drifter-430x430-1.png
+193,38,Algarve Breakfast,R107.90,https://barcelos.co.za/wp-content/uploads/2021/07/breakfast-algarve-430x430-1.png
+194,39,Soft Drinks 300ml,R28.90,https://barcelos.co.za/wp-content/uploads/2021/07/drinks-440ml-soft-drinks-430x430-1.png
+198,39,Valpre 500ml,R26.90,https://barcelos.co.za/wp-content/uploads/2021/07/drinks-valpre-430x430-1.png
+196,39,Suntropic Juice 1L,R38.90,https://barcelos.co.za/wp-content/uploads/2021/07/drinks-suntropic-juice-430x430-1.jpg
+197,39,Lipton 300ml,R22.90,https://barcelos.co.za/wp-content/uploads/2023/08/lipton-lemon-ice-tea.png
+200,39,Splash Juice 250ml,R10.90,https://barcelos.co.za/wp-content/uploads/2021/07/barcelos-drinks-splash-juice-430x430-1.jpg
+201,39,Tizers,R35.90,https://barcelos.co.za/wp-content/uploads/2021/07/drinks-tizers-430x430-1.png

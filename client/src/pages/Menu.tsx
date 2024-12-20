@@ -25,27 +25,39 @@ export function Menu() {
   }, [categories, activeCategory]);
 
   useEffect(() => {
-    // Add scroll event listener to update active category based on scroll position
+    let isScrolling = false;
+    
     const handleScroll = () => {
-      const headerOffset = 200; // Account for fixed header and padding
-      const sections = categories.map(cat => ({
-        id: cat.name,
-        element: document.getElementById(cat.name)
-      })).filter(section => section.element);
+      if (isScrolling) return;
+      isScrolling = true;
 
-      // Find the section that's currently in view
-      const currentSection = sections.find(section => {
-        if (!section.element) return false;
-        const rect = section.element.getBoundingClientRect();
-        return rect.top <= headerOffset && rect.bottom > headerOffset;
+      // Use requestAnimationFrame to throttle scroll events
+      requestAnimationFrame(() => {
+        const headerHeight = document.querySelector('header')?.getBoundingClientRect().height || 160;
+        const categoryNavHeight = 64; // Height of category navigation
+        const totalOffset = headerHeight + categoryNavHeight;
+
+        const sections = categories.map(cat => ({
+          id: cat.name,
+          element: document.getElementById(cat.name)
+        })).filter(section => section.element);
+
+        // Find the section that's currently in view
+        const currentSection = sections.find(section => {
+          if (!section.element) return false;
+          const rect = section.element.getBoundingClientRect();
+          return rect.top <= totalOffset && rect.bottom > totalOffset;
+        });
+
+        if (currentSection && currentSection.id !== activeCategory) {
+          setActiveCategory(currentSection.id);
+        }
+
+        isScrolling = false;
       });
-
-      if (currentSection && currentSection.id !== activeCategory) {
-        setActiveCategory(currentSection.id);
-      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [categories, activeCategory]);
 
@@ -54,9 +66,12 @@ export function Menu() {
     // Scroll to category section
     const element = document.getElementById(category);
     if (element) {
-      const headerOffset = 200; // Account for fixed header height and padding
+      const headerHeight = document.querySelector('header')?.getBoundingClientRect().height || 160;
+      const categoryNavHeight = 64; // Height of category navigation
+      const totalOffset = headerHeight + categoryNavHeight;
+      
       const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      const offsetPosition = elementPosition + window.pageYOffset - totalOffset;
 
       window.scrollTo({
         top: offsetPosition,
