@@ -592,7 +592,7 @@ const menuData = [
 const app = express(); // Declare 'app' as an express application instance
 const httpServer = createServer(app);
 
-export function registerRoutes(app: Express): Server {
+export function registerRoutes(app: Express) {
   // Get menu data with categories and items
   app.get("/api/menu", async (_req, res) => {
     try {
