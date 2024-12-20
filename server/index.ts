@@ -64,7 +64,7 @@ app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     }
 
     // Simple server start
-    server.listen(PORT, "0.0.0.0", () => {
+    server.listen(Number(PORT), "0.0.0.0", () => {
       log(`Server started on port ${PORT}`);
     }).on('error', (err: any) => {
       log(`Error starting server: ${err}`);

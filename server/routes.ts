@@ -59,7 +59,7 @@ export function registerRoutes(app: Express): Server {
   // Import menu data endpoint
   app.post("/api/menu/import", async (req, res) => {
     try {
-      const menuData = req.body.menuItems || sampleMenuData;
+      const menuData = Array.isArray(req.body.menuItems) ? req.body.menuItems : sampleMenuData;
 
       // Process the menu data
       const result = await db.transaction(async (tx) => {
