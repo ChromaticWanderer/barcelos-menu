@@ -60,9 +60,17 @@ export function Menu() {
 
 
   return (
-    <div className="min-h-screen bg-black">
-      <header className="sticky top-0 z-50 w-full border-b border-gray-800 bg-black/95 backdrop-blur">
-        <div className="flex h-24 md:h-28 items-center justify-center px-4 md:px-6">
+    <div className="min-h-screen bg-[#1a1a1a] relative overflow-hidden">
+      {/* Decorative background pattern */}
+      <div className="absolute inset-0 opacity-5 pointer-events-none bg-repeat" 
+        style={{ 
+          backgroundImage: `url('/pattern-overlay.png')`,
+          backgroundSize: '400px'
+        }} 
+      />
+      
+      <header className="sticky top-0 z-50 w-full border-b border-primary/20 bg-[#1a1a1a]/95 backdrop-blur">
+        <div className="flex h-24 md:h-28 items-center justify-center px-4 md:px-6 bg-gradient-to-b from-primary/10">
           <Logo className="h-16 md:h-20" />
         </div>
         <CategoryNav
@@ -72,17 +80,34 @@ export function Menu() {
         />
       </header>
 
-      <main className="container mx-auto px-4">
-        {categories.map((category) => (
-          <section
-            key={category.id}
-            id={category.name}
-            className="scroll-mt-48"
-          >
-            <h2 className="text-2xl md:text-3xl font-bold px-2 pt-8 uppercase tracking-wide text-white">{category.name}</h2>
-            <MenuGrid items={category.items} />
-          </section>
-        ))}
+      <main className="container mx-auto px-4 relative">
+        {categories.map((category, index) => {
+          // Alternate between brand colors for section backgrounds
+          const bgColors = [
+            'from-primary/5',
+            'from-yellow-600/5',
+            'from-emerald-600/5',
+            'from-cyan-600/5',
+            'from-orange-600/5'
+          ];
+          const bgColor = bgColors[index % bgColors.length];
+          
+          return (
+            <section
+              key={category.id}
+              id={category.name}
+              className={`scroll-mt-48 rounded-xl mb-8 bg-gradient-to-b ${bgColor} to-transparent`}
+            >
+              <div className="px-4 py-8">
+                <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-wide text-white mb-6 flex items-center">
+                  <span className="w-2 h-8 bg-primary mr-4 rounded-full"></span>
+                  {category.name}
+                </h2>
+                <MenuGrid items={category.items} />
+              </div>
+            </section>
+          );
+        })}
       </main>
     </div>
   );
