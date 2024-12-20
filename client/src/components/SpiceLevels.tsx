@@ -20,23 +20,23 @@ interface SpiceLevelsProps {
 
 export function SpiceLevels({ className }: SpiceLevelsProps) {
   return (
-    <div className={cn("flex items-center gap-4", className)}>
+    <div className={cn("flex items-start gap-8", className)}>
       {spiceLevels.map((level) => (
-        <div key={level.id} className="flex flex-col items-center gap-1.5">
+        <div key={level.id} className="flex flex-col items-center">
           <div className={cn(
-            "w-10 h-10 rounded-full flex items-center justify-center text-black font-bold text-sm shadow-lg ring-2 ring-white/10",
+            "w-12 h-12 rounded-full flex items-center justify-center text-black font-bold text-sm border-2 border-white/20",
             level.color
           )}>
             {level.id}
           </div>
-          <div className="flex flex-col items-center">
+          <div className="mt-2 flex flex-col items-center">
             {level.name === "Tangy Lemon" ? (
               <>
-                <div className="text-[11px] leading-tight text-white font-medium">Tangy</div>
-                <div className="text-[11px] leading-tight text-white font-medium">Lemon</div>
+                <span className="text-[11px] leading-tight text-white font-medium">Tangy</span>
+                <span className="text-[11px] leading-tight text-white font-medium">Lemon</span>
               </>
             ) : (
-              <div className="text-[11px] leading-tight text-white font-medium">{level.name}</div>
+              <span className="text-[11px] leading-tight text-white font-medium whitespace-nowrap">{level.name}</span>
             )}
           </div>
         </div>
