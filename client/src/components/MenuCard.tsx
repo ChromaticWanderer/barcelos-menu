@@ -9,9 +9,9 @@ interface MenuCardProps {
 
 export function MenuCard({ item, sizeVariants }: MenuCardProps) {
   return (
-    <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 bg-black border-primary/20 group">
+    <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 border-primary/20 group">
       <CardHeader className="p-0">
-        <div className="aspect-[4/3] overflow-hidden bg-black relative">
+        <div className={`aspect-[4/3] overflow-hidden relative ${item.name.includes('300ml') ? 'bg-white' : 'bg-black'}`}>
           <img 
             src={item.imageUrl} 
             alt={item.name}
