@@ -25,8 +25,7 @@ export function Logo({
         className={cn(
           "transition-opacity duration-300",
           isLoading ? "opacity-0" : "opacity-100",
-          // Responsive sizing classes
-          "h-12 w-auto sm:h-16 md:h-20 lg:h-24",
+          "w-auto", // Removed fixed height and added width control.  Let the image scale naturally.
           className
         )}
         onError={(e) => {

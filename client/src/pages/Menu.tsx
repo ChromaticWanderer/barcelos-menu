@@ -127,7 +127,7 @@ export function Menu() {
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row md:h-28 transition-all duration-300">
             <div className="flex justify-center py-6 md:py-0 logo-container transition-all duration-300 w-full md:w-auto px-8 md:px-0" data-hide-on-scroll>
-              <Logo className="h-28 md:h-20 w-auto max-w-[280px]" />
+              <Logo className="w-auto" />
             </div>
             <div className="flex justify-center py-2 md:py-0 md:justify-end md:flex-1 px-4 md:px-6 bg-gradient-to-b from-primary/10">
               <SpiceLevels className="flex" />
