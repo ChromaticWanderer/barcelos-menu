@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
 import { Logo } from "@/components/Logo";
+import { SpiceLevels } from "@/components/SpiceLevels";
 import { CategoryNav } from "@/components/CategoryNav";
 import { MenuGrid } from "@/components/MenuGrid";
 import type { MenuResponse } from "@/types/menu";
@@ -110,8 +111,9 @@ export function Menu() {
       />
       
       <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-primary/20 bg-[#1a1a1a]/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="flex h-24 md:h-28 items-center justify-center px-4 md:px-6 bg-gradient-to-b from-primary/10">
+        <div className="flex h-24 md:h-28 items-center justify-between px-4 md:px-6 bg-gradient-to-b from-primary/10">
           <Logo className="h-16 md:h-20" />
+          <SpiceLevels className="hidden md:flex" />
         </div>
         <CategoryNav
           categories={categories.map(cat => cat.name)}
