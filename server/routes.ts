@@ -208,12 +208,350 @@ export function registerRoutes(app: Express): Server {
           categoryId: 33
         },
         {
-          id: 166,
-          name: "6 Dippa Wings and one side",
-          price: "R64.90",
-          imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/especially-6-dippa-wings-430x430-1.gif",
-          categoryId: 33
-        }
+            id: 166,
+            name: "6 Dippa Wings and one side",
+            price: "R64.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/especially-6-dippa-wings-430x430-1.gif",
+            categoryId: 33
+          },
+          {
+            id: 167,
+            name: "Portuguese Galito Roll and one side",
+            price: "R65.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2023/08/galito-roll.png",
+            categoryId: 33
+          },
+          {
+            id: 165,
+            name: "2 Kebabs and one side",
+            price: "R64.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/especially-two-kebabs-430x430-1.png",
+            categoryId: 33
+          },
+          {
+            id: 164,
+            name: "Chicken Trinchado",
+            price: "R68.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/especially-trinchado-430x430-2.png",
+            categoryId: 33
+          },
+          {
+            id: 157,
+            name: "Ayoba Meal",
+            price: "R50.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/favs-bafana-meal-430x430-1.png",
+            categoryId: 31
+          },
+          {
+            id: 158,
+            name: "Super Ayoba Meal",
+            price: "R79.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/favs-super-bafana-meal-430x430-1.png",
+            categoryId: 31
+          },
+          {
+            id: 159,
+            name: "Mega Ayoba Meal",
+            price: "R119.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/favs-mega-bafana-meal-430x430-1.gif",
+            categoryId: 31
+          },
+          {
+            id: 203,
+            name: "Regular Garden Salad",
+            price: "R32.90",
+            imageUrl: "",
+            categoryId: 34
+          },
+          {
+            id: 169,
+            name: "Medium Garden Salad",
+            price: "R43.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/salads-garden-salad-430x430-3.png",
+            categoryId: 34
+          },
+          {
+            id: 204,
+            name: "Large Garden Salad",
+            price: "R51.90",
+            imageUrl: "",
+            categoryId: 34
+          },
+          {
+            id: 171,
+            name: "Medium Mediterranean Salad",
+            price: "R56.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/salads-mediterranean-Salad-430x430-1.png",
+            categoryId: 34
+          },
+          {
+            id: 172,
+            name: "Large Mediterranean Salad",
+            price: "R69.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/salads-mediterranean-Salad-430x430-1.png",
+            categoryId: 34
+          },
+          {
+            id: 173,
+            name: "Regular Chicken Salad",
+            price: "R73.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/salads-chicken-salad-430x430-2.png",
+            categoryId: 34
+          },
+          {
+            id: 174,
+            name: "Large Chicken Salad",
+            price: "R88.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/salads-chicken-salad-430x430-2.png",
+            categoryId: 34
+          },
+          {
+            id: 187,
+            name: "Regular Fries",
+            price: "R31.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/sides-chips-430x430-2.png",
+            categoryId: 37
+          },
+          {
+            id: 188,
+            name: "Medium Fries",
+            price: "R40.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/sides-chips-430x430-2.png",
+            categoryId: 37
+          },
+          {
+            id: 189,
+            name: "Large Fries",
+            price: "R47.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/sides-chips-430x430-2.png",
+            categoryId: 37
+          },
+          {
+            id: 181,
+            name: "Regular Pap & Tomato Relish",
+            price: "R31.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/sides-pap-and-relish-430x430-1.gif",
+            categoryId: 37
+          },
+          {
+            id: 205,
+            name: "Medium Pap & Tomato Relish",
+            price: "R40.90",
+            imageUrl: "",
+            categoryId: 37
+          },
+          {
+            id: 206,
+            name: "Large Pap & Tomato Relish",
+            price: "R47.90",
+            imageUrl: "",
+            categoryId: 37
+          },
+          {
+            id: 180,
+            name: "Regular Potato Wedges",
+            price: "R31.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/sides-wedges-430x430-1.gif",
+            categoryId: 37
+          },
+          {
+            id: 207,
+            name: "Medium Potato Wedges",
+            price: "R40.90",
+            imageUrl: "",
+            categoryId: 37
+          },
+          {
+            id: 208,
+            name: "Large Potato Wedges",
+            price: "R47.90",
+            imageUrl: "",
+            categoryId: 37
+          },
+          {
+            id: 182,
+            name: "Regular Spicy Rice",
+            price: "R31.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/sides-spicy-rice-430x430-1.gif",
+            categoryId: 37
+          },
+          {
+            id: 209,
+            name: "Medium Spicy Rice",
+            price: "R40.90",
+            imageUrl: "",
+            categoryId: 37
+          },
+          {
+            id: 210,
+            name: "Large Spicy Rice",
+            price: "R47.90",
+            imageUrl: "",
+            categoryId: 37
+          }
+        ]
+
+          {
+            id: 183,
+            name: "Regular 3 Bean Salad",
+            price: "R31.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/sides-3-bean-430x430-1.png",
+            categoryId: 37
+          },
+          {
+            id: 211,
+            name: "Medium 3 Bean Salad",
+            price: "R40.90",
+            imageUrl: "",
+            categoryId: 37
+          },
+          {
+            id: 212,
+            name: "Large 3 Bean Salad",
+            price: "R47.90",
+            imageUrl: "",
+            categoryId: 37
+          },
+          {
+            id: 184,
+            name: "Regular Coleslaw",
+            price: "R31.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/sides-coleslaw-430x430-2.png",
+            categoryId: 37
+          },
+          {
+            id: 185,
+            name: "Medium Coleslaw",
+            price: "R40.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/sides-coleslaw-430x430-2.png",
+            categoryId: 37
+          },
+          {
+            id: 186,
+            name: "Large Coleslaw",
+            price: "R47.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/sides-coleslaw-430x430-2.png",
+            categoryId: 37
+          },
+          {
+            id: 160,
+            name: "Chicken Bowl",
+            price: "R67.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/bowls-chicken-bowl-430x430-2.png",
+            categoryId: 32
+          },
+          {
+            id: 161,
+            name: "Beef Bowl",
+            price: "R83.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/bowls-beef-430x430-1.png",
+            categoryId: 32
+          },
+          {
+            id: 175,
+            name: "Veggie Burger",
+            price: "R100.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/vegetarian-burger-with-chips-430x430-1.png",
+            categoryId: 35
+          },
+          {
+            id: 176,
+            name: "Veggie Bowl",
+            price: "R100.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/bowl-vegeterian-430x430-1.png",
+            categoryId: 35
+          },
+          {
+            id: 177,
+            name: "Veggie Schwarma",
+            price: "R100.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/vegetarian-schwarma-with-chips-430x430-1.png",
+            categoryId: 35
+          },
+          {
+            id: 178,
+            name: "Kids Burger Meal",
+            price: "R87.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2023/08/kids-burger-meal-2023-430x430-1.png",
+            categoryId: 36
+          },
+          {
+            id: 179,
+            name: "Kids Crumbed Chicken Strips & Chips",
+            price: "R87.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/kiddies-crumbed-chicken-strips-430x430-1.png",
+            categoryId: 36
+          },
+          {
+            id: 190,
+            name: "Mini Breakfast",
+            price: "R53.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/breakfast-mini-430x430-1.png",
+            categoryId: 38
+          },
+          {
+            id: 191,
+            name: "Cheesy Egg in Pita",
+            price: "R71.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/breakfast-cheesy-egg-in-pita.png",
+            categoryId: 38
+          },
+          {
+            id: 192,
+            name: "Drifter Breakfast",
+            price: "R91.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/breakfast-drifter-430x430-1.png",
+            categoryId: 38
+          },
+          {
+            id: 193,
+            name: "Algarve Breakfast",
+            price: "R107.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/breakfast-algarve-430x430-1.png",
+            categoryId: 38
+          },
+          {
+            id: 194,
+            name: "Soft Drinks 300ml",
+            price: "R28.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/drinks-440ml-soft-drinks-430x430-1.png",
+            categoryId: 39
+          },
+          {
+            id: 198,
+            name: "Valpre 500ml",
+            price: "R26.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/drinks-valpre-430x430-1.png",
+            categoryId: 39
+          },
+          {
+            id: 196,
+            name: "Suntropic Juice 1L",
+            price: "R38.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/drinks-suntropic-juice-430x430-1.jpg",
+            categoryId: 39
+          },
+          {
+            id: 197,
+            name: "Lipton 300ml",
+            price: "R22.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2023/08/lipton-lemon-ice-tea.png",
+            categoryId: 39
+          },
+          {
+            id: 200,
+            name: "Splash Juice 250ml",
+            price: "R10.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/barcelos-drinks-splash-juice-430x430-1.jpg",
+            categoryId: 39
+          },
+          {
+            id: 201,
+            name: "Tizers",
+            price: "R35.90",
+            imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/drinks-tizers-430x430-1.png",
+            categoryId: 39
+          }      
       ]);
 
       res.json({ success: true });
@@ -258,7 +596,9 @@ export function registerRoutes(app: Express): Server {
   // Import menu data from CSV
   app.get("/api/menu/import", async (_req, res) => {
     try {
-      // Read CSV file
+      if (!fs.existsSync("barcelos_menu.csv")) {
+        return res.status(404).json({ error: "Menu CSV file not found" });
+      }
       const csvData = fs.readFileSync("barcelos_menu.csv", "utf-8");
       const records = parse(csvData, {
         columns: true,
