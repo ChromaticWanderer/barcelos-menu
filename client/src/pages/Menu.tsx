@@ -111,15 +111,17 @@ export function Menu() {
       />
       
       <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-primary/20 bg-[#1a1a1a]/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="flex h-24 md:h-28 items-center justify-between px-4 md:px-6 bg-gradient-to-b from-primary/10">
-          <Logo className="h-16 md:h-20" />
-          <SpiceLevels className="hidden md:flex" />
+        <div className="container mx-auto">
+          <div className="flex h-24 md:h-28 items-center justify-between px-4 md:px-6 bg-gradient-to-b from-primary/10">
+            <Logo className="h-16 md:h-20" />
+            <SpiceLevels className="flex" />
+          </div>
+          <CategoryNav
+            categories={categories.map(cat => cat.name)}
+            activeCategory={activeCategory || ''}
+            onSelectCategory={onSelectCategory}
+          />
         </div>
-        <CategoryNav
-          categories={categories.map(cat => cat.name)}
-          activeCategory={activeCategory || ''}
-          onSelectCategory={onSelectCategory}
-        />
       </header>
 
       <main className="container mx-auto px-4 relative pt-[calc(6rem+4rem)] md:pt-[calc(7rem+4rem)]">
