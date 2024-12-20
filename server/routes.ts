@@ -7,6 +7,36 @@ import fs from "fs";
 import { parse } from "csv-parse/sync";
 
 export function registerRoutes(app: Express): Server {
+  // Update prices endpoint
+  app.post("/api/menu/update-prices", async (_req, res) => {
+    try {
+      await db.update(menuItems)
+        .set({ price: "R82.90" })
+        .where(eq(menuItems.id, 135));
+      
+      await db.update(menuItems)
+        .set({ price: "R136.00" })
+        .where(eq(menuItems.id, 136));
+      
+      await db.update(menuItems)
+        .set({ price: "R236.90" })
+        .where(eq(menuItems.id, 137));
+      
+      await db.update(menuItems)
+        .set({ price: "R79.90" })
+        .where(eq(menuItems.id, 138));
+      
+      await db.update(menuItems)
+        .set({ price: "R95.90" })
+        .where(eq(menuItems.id, 139));
+
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error updating prices:", error);
+      res.status(500).json({ error: "Failed to update prices" });
+    }
+  });
+
   // Menu routes
   app.get("/api/menu", async (_req, res) => {
     try {
