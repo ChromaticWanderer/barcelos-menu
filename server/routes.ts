@@ -587,7 +587,7 @@ export function registerRoutes(app: Express) {
             name: "Soft Drinks 300ml",
             price: "R28.90",
             imageUrl:
-              "https://barcelos.co.za/wp-content/uploads/2021/07/drinks-440ml-soft-drinks-430x430-1.png",
+              "https://www.checkers.co.za/medias/10640171EA-checkers515Wx515H.webp?context=bWFzdGVyfGltYWdlc3wxNzA4OHxpbWFnZS93ZWJwfGltYWdlcy9oNjMvaGYwLzk3NzQ5NjcwOTUzMjYud2VicHxjZmIzOWFjOGY2MTdjYWZkMzQ0NTE2NzZmY2IwNjkzOGJjYTA2NDMzNGU0ZjYwMTg3OGI5MWJhMGZjNzk3M2Zl",
           },
           {
             id: 198,
