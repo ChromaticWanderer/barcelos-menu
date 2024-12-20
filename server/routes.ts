@@ -73,32 +73,7 @@ export function registerRoutes(app: Express): Server {
         })
         .where(eq(menuItems.id, 156));
 
-      await db.insert(menuItems).values([
-        {
-          id: 163,
-          name: "Chicken Livers and one side",
-          price: "R61.90",
-          imageUrl:
-            "https://barcelos.co.za/wp-content/uploads/2021/07/especially-chicken-livers-430x430-1.gif",
-          categoryId: 33,
-        },
-        {
-          id: 162,
-          name: "Chicken Kebab in Roll and one side",
-          price: "R46.90",
-          imageUrl:
-            "https://barcelos.co.za/wp-content/uploads/2021/07/especially-chicken-kebab-in-roll-430x430-1.gif",
-          categoryId: 33,
-        },
-        {
-          id: 166,
-          name: "6 Dippa Wings and one side",
-          price: "R64.90",
-          imageUrl:
-            "https://barcelos.co.za/wp-content/uploads/2021/07/especially-6-dippa-wings-430x430-1.gif",
-          categoryId: 33,
-        },
-      ]);
+      // Items already inserted above, removing duplicate insert
 
       await db
         .update(menuItems)
