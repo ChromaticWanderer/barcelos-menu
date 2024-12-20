@@ -18,8 +18,8 @@ export function MenuCard({ item }: MenuCardProps) {
         </div>
       </CardHeader>
       <CardContent className="p-4">
-        <h3 className="font-bold text-base md:text-lg mb-1 uppercase tracking-wide text-gray-100">{item.itemName}</h3>
-        <p className="text-gray-200 text-sm md:text-base font-bold">{item.regularPrice}</p>
+        <h3 className="font-bold text-base md:text-lg mb-1 uppercase tracking-wide text-gray-100">{item.name}</h3>
+        <p className="text-gray-200 text-sm md:text-base font-bold">{item.price}</p>
       </CardContent>
     </Card>
   );

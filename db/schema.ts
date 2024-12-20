@@ -1,13 +1,39 @@
-import { pgTable, text, serial, integer, boolean } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, relations } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
-export const users = pgTable("users", {
+export const menuCategories = pgTable("menu_categories", {
   id: serial("id").primaryKey(),
-  username: text("username").unique().notNull(),
-  password: text("password").notNull(),
+  name: text("name").unique().notNull(),
 });
 
-export const insertUserSchema = createInsertSchema(users);
-export const selectUserSchema = createSelectSchema(users);
-export type InsertUser = typeof users.$inferInsert;
-export type SelectUser = typeof users.$inferSelect;
+export const menuItems = pgTable("menu_items", {
+  id: serial("id").primaryKey(),
+  categoryId: integer("category_id").notNull().references(() => menuCategories.id),
+  name: text("name").notNull(),
+  price: text("price").notNull(),
+  imageUrl: text("image_url").notNull(),
+});
+
+// Define relations
+export const menuCategoriesRelations = relations(menuCategories, ({ many }) => ({
+  items: many(menuItems),
+}));
+
+export const menuItemsRelations = relations(menuItems, ({ one }) => ({
+  category: one(menuCategories, {
+    fields: [menuItems.categoryId],
+    references: [menuCategories.id],
+  }),
+}));
+
+// Schemas for validation
+export const insertCategorySchema = createInsertSchema(menuCategories);
+export const selectCategorySchema = createSelectSchema(menuCategories);
+export const insertMenuItemSchema = createInsertSchema(menuItems);
+export const selectMenuItemSchema = createSelectSchema(menuItems);
+
+// Types for TypeScript
+export type InsertCategory = typeof menuCategories.$inferInsert;
+export type SelectCategory = typeof menuCategories.$inferSelect;
+export type InsertMenuItem = typeof menuItems.$inferInsert;
+export type SelectMenuItem = typeof menuItems.$inferSelect;

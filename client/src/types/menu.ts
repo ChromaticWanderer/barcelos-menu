@@ -1,10 +1,17 @@
 export interface MenuItem {
-  category: string;
-  itemName: string;
-  regularPrice: string;
+  id: number;
+  categoryId: number;
+  name: string;
+  price: string;
   imageUrl: string;
 }
 
-export interface MenuItemsByCategory {
-  [category: string]: MenuItem[];
+export interface MenuCategory {
+  id: number;
+  name: string;
+  items: MenuItem[];
+}
+
+export interface MenuResponse {
+  categories: MenuCategory[];
 }
