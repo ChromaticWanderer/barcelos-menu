@@ -7,11 +7,11 @@ interface SpiceLevelOption {
 }
 
 const spiceLevels: SpiceLevelOption[] = [
-  { id: "TL", name: "Tangy Lemon", color: "bg-yellow-400" },
-  { id: "P", name: "Prego", color: "bg-green-600" },
-  { id: "MP", name: "Mild Peri", color: "bg-yellow-500" },
-  { id: "VP", name: "Veri Peri", color: "bg-orange-500" },
-  { id: "SP", name: "Supa Peri", color: "bg-red-600" },
+  { id: "TL", name: "Tangy Lemon", color: "bg-[#FFE135]" },
+  { id: "P", name: "Prego", color: "bg-[#008C45]" },
+  { id: "MP", name: "Mild Peri", color: "bg-[#FFD700]" },
+  { id: "VP", name: "Veri Peri", color: "bg-[#FF8C00]" },
+  { id: "SP", name: "Supa Peri", color: "bg-[#FF0000]" },
 ];
 
 interface SpiceLevelsProps {
@@ -20,18 +20,23 @@ interface SpiceLevelsProps {
 
 export function SpiceLevels({ className }: SpiceLevelsProps) {
   return (
-    <div className={cn("flex items-center gap-3", className)}>
+    <div className={cn("flex items-center gap-6", className)}>
       {spiceLevels.map((level) => (
-        <div key={level.id} className="flex flex-col items-center">
-          <div className="flex items-center justify-center">
+        <div key={level.id} className="flex flex-col items-center gap-2">
+          <div className="flex items-center gap-2">
             <div className={cn(
-              "w-10 h-10 rounded-full flex items-center justify-center text-black font-bold text-sm",
+              "w-8 h-8 rounded-full flex items-center justify-center text-black font-bold text-xs tracking-tight shadow-lg",
               level.color
             )}>
               {level.id}
             </div>
+            <img
+              src={`/chili-${level.id.toLowerCase()}.svg`}
+              alt=""
+              className="w-6 h-6 -scale-x-100"
+            />
           </div>
-          <div className="text-[10px] text-white font-medium mt-1 text-center">
+          <div className="text-[11px] text-white font-medium text-center whitespace-nowrap">
             {level.name}
           </div>
         </div>
