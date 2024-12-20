@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { CategoryNav } from "@/components/CategoryNav";
 import { MenuGrid } from "@/components/MenuGrid";
@@ -10,7 +10,14 @@ export function Menu() {
   });
 
   const categories = data?.categories || [];
-  const [activeCategory, setActiveCategory] = useState(categories[0]?.name);
+  const [activeCategory, setActiveCategory] = useState<string>();
+  
+  // Update active category when data loads
+  useEffect(() => {
+    if (categories.length > 0 && !activeCategory) {
+      setActiveCategory(categories[0].name);
+    }
+  }, [categories, activeCategory]);
 
   if (isLoading) {
     return (

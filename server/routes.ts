@@ -32,7 +32,10 @@ export function registerRoutes(app: Express): Server {
       res.json({ categories: result });
     } catch (error) {
       console.error("Error fetching menu:", error);
-      res.status(500).json({ error: "Failed to fetch menu" });
+      res.status(500).json({ 
+        error: "Failed to fetch menu",
+        details: error instanceof Error ? error.message : String(error)
+      });
     }
   });
 
