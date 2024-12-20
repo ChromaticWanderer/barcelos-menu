@@ -152,9 +152,9 @@ export function registerRoutes(app: Express): Server {
 
       res.json({ success: true });
     } catch (error) {
-        {
-          id: 163,
-          name: "Chicken Livers and one side",
+      console.error("Error updating prices:", error);
+      res.status(500).json({ error: "Failed to update prices" });
+    }
           price: "R61.90",
           imageUrl:
             "https://barcelos.co.za/wp-content/uploads/2021/07/especially-chicken-livers-430x430-1.gif",
