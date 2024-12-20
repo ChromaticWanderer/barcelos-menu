@@ -39,8 +39,11 @@ app.use((req, res, next) => {
   next();
 });
 
-// API Routes
-registerRoutes(app);
+// Create HTTP server first
+const server = createServer(app);
+
+// Register routes
+const httpServer = registerRoutes(app);
 
 // Error handling middleware
 app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
@@ -50,55 +53,34 @@ app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
   res.status(status).json({ message });
 });
 
-// Create HTTP server
-const server = createServer(app);
-
 // Start server
 (async () => {
   try {
-    // Setup Vite or static files before starting server
+    // Setup Vite or static files
     if (process.env.NODE_ENV === "production") {
       serveStatic(app);
     } else {
       await setupVite(app, server);
     }
 
-    // Start listening
-    const startServer = async () => {
-    try {
-      await new Promise<void>((resolve, reject) => {
-        server.listen(PORT, "0.0.0.0", () => {
-          log(`Server started on port ${PORT}`);
-          resolve();
-        }).on('error', (err: any) => {
-          if (err.code === 'EADDRINUSE') {
-            log(`Port ${PORT} is in use, attempting to close existing connections...`);
-            server.close();
-            reject(err);
-          } else {
-            log(`Error starting server: ${err}`);
-            reject(err);
-          }
-        });
-      });
-    } catch (error) {
-      log(`Failed to start server: ${error}`);
+    // Simple server start
+    server.listen(PORT, "0.0.0.0", () => {
+      log(`Server started on port ${PORT}`);
+    }).on('error', (err: any) => {
+      log(`Error starting server: ${err}`);
       process.exit(1);
-    }
-  };
+    });
 
-    startServer();
-
-    // Graceful shutdown handler
-    const handleShutdown = () => {
+    // Graceful shutdown
+    const shutdown = () => {
       server.close(() => {
         log("Server stopped");
         process.exit(0);
       });
     };
 
-    process.on("SIGTERM", handleShutdown);
-    process.on("SIGINT", handleShutdown);
+    process.on("SIGTERM", shutdown);
+    process.on("SIGINT", shutdown);
 
   } catch (error) {
     log(`Fatal error starting server: ${error}`);
