@@ -40,14 +40,17 @@ export function registerRoutes(app: Express): Server {
   });
 
   // Import menu data from CSV
-  app.post("/api/menu/import", async (_req, res) => {
+  app.get("/api/menu/import", async (_req, res) => {
     try {
       // Read CSV file
       const csvData = fs.readFileSync("barcelos_menu.csv", "utf-8");
       const records = parse(csvData, {
         columns: true,
-        skip_empty_lines: true
+        skip_empty_lines: true,
+        trim: true
       });
+
+      console.log("Parsed CSV records:", records.length);
 
       // Clear existing data
       await db.delete(menuItems);
@@ -55,6 +58,7 @@ export function registerRoutes(app: Express): Server {
 
       // Get unique categories
       const uniqueCategories = Array.from(new Set(records.map((record: any) => record.Category).filter(Boolean)));
+      console.log("Unique categories:", uniqueCategories);
       
       // Insert categories and build category map
       const categoryMap = new Map();
@@ -71,9 +75,11 @@ export function registerRoutes(app: Express): Server {
         .map((record: any) => ({
           categoryId: categoryMap.get(record.Category),
           name: record["Item Name"],
-          price: record["Regular Price"],
-          imageUrl: record["Image URL"],
+          price: record["Regular Price"] || "N/A",
+          imageUrl: record["Image URL"] || "/default-dish.png",
         }));
+
+      console.log("Menu items to insert:", menuItemsToInsert.length);
 
       if (menuItemsToInsert.length > 0) {
         await db.insert(menuItems).values(menuItemsToInsert);
