@@ -18,7 +18,7 @@ export function Menu() {
       <header className="sticky top-0 z-50 w-full border-b border-gray-800 bg-black/95 backdrop-blur">
         <div className="flex h-24 md:h-28 items-center justify-center px-4 md:px-6">
           <img 
-            src="/Red Side Logo.png"
+            src="/Logoupdate.png"
             alt="Barcelos"
             className="h-16 md:h-20"
           />
