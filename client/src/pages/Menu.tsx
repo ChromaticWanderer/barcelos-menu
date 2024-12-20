@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { motion, AnimatePresence } from "framer-motion";
 import { Logo } from "@/components/Logo";
 import { CategoryNav } from "@/components/CategoryNav";
 import { MenuGrid } from "@/components/MenuGrid";
@@ -93,19 +94,44 @@ export function Menu() {
           const bgColor = bgColors[index % bgColors.length];
           
           return (
-            <section
+            <motion.section
               key={category.id}
               id={category.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ 
+                opacity: 1, 
+                y: 0,
+                transition: { 
+                  duration: 0.5,
+                  delay: index * 0.1 
+                }
+              }}
+              viewport={{ once: true, margin: "-100px" }}
               className={`scroll-mt-48 rounded-xl mb-8 bg-gradient-to-b ${bgColor} to-transparent`}
             >
-              <div className="px-4 py-8">
-                <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-wide text-white mb-6 flex items-center">
-                  <span className="w-2 h-8 bg-primary mr-4 rounded-full"></span>
+              <motion.div 
+                className="px-4 py-8"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+              >
+                <motion.h2 
+                  className="text-2xl md:text-3xl font-bold uppercase tracking-wide text-white mb-6 flex items-center"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: 0.3 }}
+                >
+                  <motion.span 
+                    className="w-2 h-8 bg-primary mr-4 rounded-full"
+                    initial={{ scaleY: 0 }}
+                    animate={{ scaleY: 1 }}
+                    transition={{ duration: 0.3, delay: 0.4 }}
+                  />
                   {category.name}
-                </h2>
+                </motion.h2>
                 <MenuGrid items={category.items} />
-              </div>
-            </section>
+              </motion.div>
+            </motion.section>
           );
         })}
       </main>
