@@ -11,13 +11,29 @@ export function Menu() {
 
   const categories = data?.categories || [];
   const [activeCategory, setActiveCategory] = useState<string>();
-  
+
   // Update active category when data loads
   useEffect(() => {
     if (categories.length > 0 && !activeCategory) {
       setActiveCategory(categories[0].name);
     }
   }, [categories, activeCategory]);
+
+  const onSelectCategory = (category: string) => {
+    setActiveCategory(category);
+    // Scroll to category section
+    const element = document.getElementById(category);
+    if (element) {
+      const headerOffset = 140; // Account for fixed header height
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
 
   if (isLoading) {
     return (
@@ -35,6 +51,7 @@ export function Menu() {
     );
   }
 
+
   return (
     <div className="min-h-screen bg-black">
       <header className="sticky top-0 z-50 w-full border-b border-gray-800 bg-black/95 backdrop-blur">
@@ -47,8 +64,8 @@ export function Menu() {
         </div>
         <CategoryNav
           categories={categories.map(cat => cat.name)}
-          activeCategory={activeCategory}
-          onSelectCategory={setActiveCategory}
+          activeCategory={activeCategory || ''}
+          onSelectCategory={onSelectCategory}
         />
       </header>
 
