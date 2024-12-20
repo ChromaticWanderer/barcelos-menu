@@ -593,6 +593,42 @@ const app = express(); // Declare 'app' as an express application instance
 const httpServer = createServer(app);
 
 export function registerRoutes(app: Express): Server {
+  // Get menu data with categories and items
+  app.get("/api/menu", async (_req, res) => {
+    try {
+      // Fetch all categories
+      const categories = await db.select().from(menuCategories).orderBy(menuCategories.id);
+      
+      // For each category, fetch its menu items
+      const categoriesWithItems = await Promise.all(
+        categories.map(async (category) => {
+          const items = await db
+            .select()
+            .from(menuItems)
+            .where(eq(menuItems.categoryId, category.id))
+            .orderBy(menuItems.id);
+          
+          return {
+            id: category.id,
+            name: category.name,
+            items: items.map(item => ({
+              id: item.id,
+              categoryId: item.categoryId,
+              name: item.name,
+              price: item.price,
+              imageUrl: item.imageUrl
+            }))
+          };
+        })
+      );
+
+      res.json({ categories: categoriesWithItems });
+    } catch (error) {
+      console.error('Error fetching menu:', error);
+      res.status(500).json({ error: 'Failed to fetch menu data' });
+    }
+  });
+
   // Update prices endpoint with complete dataset
   app.post("/api/menu/update-prices", async (_req, res) => {
     try {
