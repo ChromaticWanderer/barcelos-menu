@@ -2,7 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { db } from "@db";
 import { menuCategories, menuItems } from "@db/schema";
-import { eq } from "drizzle-orm";
+import { eq } from "drizzle-orm/expressions";
 import multer from "multer";
 import { parse } from "csv-parse";
 import { Readable } from "stream";

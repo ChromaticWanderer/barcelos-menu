@@ -4,7 +4,7 @@ import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = 5000;
 
 // Basic middleware setup
 app.use(express.json());
@@ -64,22 +64,28 @@ const server = createServer(app);
     }
 
     // Start listening
-    const startServer = () => {
-      server.listen(PORT, "0.0.0.0", () => {
-        log(`Server started on port ${PORT}`);
-      }).on('error', (err: any) => {
-        if (err.code === 'EADDRINUSE') {
-          log(`Port ${PORT} is in use, trying again...`);
-          setTimeout(() => {
+    const startServer = async () => {
+    try {
+      await new Promise<void>((resolve, reject) => {
+        server.listen(PORT, "0.0.0.0", () => {
+          log(`Server started on port ${PORT}`);
+          resolve();
+        }).on('error', (err: any) => {
+          if (err.code === 'EADDRINUSE') {
+            log(`Port ${PORT} is in use, attempting to close existing connections...`);
             server.close();
-            startServer();
-          }, 1000);
-        } else {
-          log(`Error starting server: ${err}`);
-          process.exit(1);
-        }
+            reject(err);
+          } else {
+            log(`Error starting server: ${err}`);
+            reject(err);
+          }
+        });
       });
-    };
+    } catch (error) {
+      log(`Failed to start server: ${error}`);
+      process.exit(1);
+    }
+  };
 
     startServer();
 
