@@ -11,8 +11,7 @@ export function Menu() {
     queryKey: ["/api/menu"],
     refetchOnMount: true,
     staleTime: 0,
-    refetchOnMount: true,
-    staleTime: 0
+    refetchInterval: 5000 // Add refresh interval to keep menu data updated
   });
 
   const categories = data?.categories || [];
