@@ -3,27 +3,24 @@ import { createServer, type Server } from "http";
 import { db } from "@db";
 import { menuCategories, menuItems } from "@db/schema";
 import { eq } from "drizzle-orm/expressions";
-import multer from "multer";
-import { parse } from "csv-parse";
-import { Readable } from "stream";
-import path from "path";
 
-// Configure multer for CSV file uploads
-const upload = multer({
-  storage: multer.memoryStorage(),
-  fileFilter: (_req, file, cb) => {
-    const ext = path.extname(file.originalname).toLowerCase();
-    if (ext !== '.csv') {
-      cb(new Error('Only CSV files are allowed'));
-      return;
-    }
-    cb(null, true);
+// Sample menu data structure for direct import
+const sampleMenuData = [
+  {
+    category: "Chicken From The Grill",
+    name: "1/4 Chicken and one side",
+    price: "R82.90",
+    imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/grill-quarter-chicken-430x430-1.png"
+  },
+  {
+    category: "Combos",
+    name: "Tasty Twins",
+    price: "R79.90",
+    imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/07/combos-tasty-twins-430x430-1.png"
   }
-});
+];
 
 export function registerRoutes(app: Express): Server {
-  const httpServer = createServer(app);
-
   // Get menu data with categories and items
   app.get("/api/menu", async (_req, res) => {
     try {
@@ -59,41 +56,15 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
-  // CSV Import endpoint
-  app.post("/api/menu/import", upload.single('file'), async (req, res) => {
-    if (!req.file) {
-      return res.status(400).json({ error: "No file uploaded" });
-    }
-
+  // Import menu data endpoint
+  app.post("/api/menu/import", async (req, res) => {
     try {
-      const fileContent = req.file.buffer.toString('utf-8');
-      const records: any[] = [];
+      const menuData = req.body.menuItems || sampleMenuData;
 
-      // Parse CSV
-      const parser = parse({
-        columns: true,
-        skip_empty_lines: true
-      });
-
-      // Process the CSV data
-      parser.on('readable', function() {
-        let record;
-        while ((record = parser.read()) !== null) {
-          records.push(record);
-        }
-      });
-
-      await new Promise((resolve, reject) => {
-        const stream = Readable.from(fileContent);
-        stream.pipe(parser);
-        parser.on('end', resolve);
-        parser.on('error', reject);
-      });
-
-      // Insert data into database
+      // Process the menu data
       const result = await db.transaction(async (tx) => {
         // Insert categories first
-        const categories = [...new Set(records.map(r => r.category))];
+        const categories = [...new Set(menuData.map(item => item.category))];
         const categoryMap = new Map();
 
         for (const categoryName of categories) {
@@ -119,7 +90,7 @@ export function registerRoutes(app: Express): Server {
         }
 
         // Insert menu items
-        const items = records.map(record => ({
+        const items = menuData.map(record => ({
           name: record.name,
           price: record.price,
           imageUrl: record.imageUrl || "",
@@ -132,18 +103,19 @@ export function registerRoutes(app: Express): Server {
 
       res.json({
         success: true,
-        message: "CSV imported successfully",
+        message: "Menu data imported successfully",
         imported: result
       });
 
     } catch (error) {
-      console.error('Error importing CSV:', error);
+      console.error('Error importing menu data:', error);
       res.status(500).json({
-        error: "Failed to import CSV",
+        error: "Failed to import menu data",
         details: error instanceof Error ? error.message : String(error)
       });
     }
   });
 
+  const httpServer = createServer(app);
   return httpServer;
 }
