@@ -16,11 +16,11 @@ export function Menu() {
   return (
     <div className="min-h-screen bg-black">
       <header className="sticky top-0 z-50 w-full border-b border-gray-800 bg-black/95 backdrop-blur">
-        <div className="flex h-20 items-center justify-center px-4 md:px-6">
+        <div className="flex h-24 md:h-28 items-center justify-center px-4 md:px-6">
           <img 
             src="/Red Side Logo.png"
             alt="Barcelos"
-            className="h-12 md:h-14"
+            className="h-16 md:h-20"
           />
         </div>
         <CategoryNav
