@@ -73,7 +73,32 @@ export function registerRoutes(app: Express): Server {
         })
         .where(eq(menuItems.id, 156));
 
-      // Items already inserted above, removing duplicate insert
+      await db.insert(menuItems).values([
+        {
+          id: 163,
+          name: "Chicken Livers and one side",
+          price: "R61.90",
+          imageUrl:
+            "https://barcelos.co.za/wp-content/uploads/2021/07/especially-chicken-livers-430x430-1.gif",
+          categoryId: 33,
+        },
+        {
+          id: 162,
+          name: "Chicken Kebab in Roll and one side",
+          price: "R46.90",
+          imageUrl:
+            "https://barcelos.co.za/wp-content/uploads/2021/07/especially-chicken-kebab-in-roll-430x430-1.gif",
+          categoryId: 33,
+        },
+        {
+          id: 166,
+          name: "6 Dippa Wings and one side",
+          price: "R64.90",
+          imageUrl:
+            "https://barcelos.co.za/wp-content/uploads/2021/07/especially-6-dippa-wings-430x430-1.gif",
+          categoryId: 33,
+        },
+      ]);
 
       await db
         .update(menuItems)
@@ -150,11 +175,73 @@ export function registerRoutes(app: Express): Server {
         .set({ price: "R72.90" })
         .where(eq(menuItems.id, 154));
 
-      res.json({ success: true });
-    } catch (error) {
-      console.error("Error updating prices:", error);
-      res.status(500).json({ error: "Failed to update prices" });
-    }
+      await db
+        .update(menuItems)
+        .set({
+          price: "R88.90",
+          imageUrl:
+            "https://barcelos.co.za/wp-content/uploads/2023/08/chicken-burger.png",
+        })
+        .where(eq(menuItems.id, 151));
+
+      await db
+        .update(menuItems)
+        .set({
+          price: "R93.90",
+          imageUrl:
+            "https://barcelos.co.za/wp-content/uploads/2021/07/bgs-beef-burger-430x430-2.png",
+        })
+        .where(eq(menuItems.id, 155));
+
+      await db
+        .update(menuItems)
+        .set({
+          price: "R90.90",
+          imageUrl:
+            "https://barcelos.co.za/wp-content/uploads/2021/07/bgs-prego-roll-chicken-430x430-1.png",
+        })
+        .where(eq(menuItems.id, 152));
+
+      await db
+        .update(menuItems)
+        .set({
+          price: "R107.90",
+          imageUrl:
+            "https://barcelos.co.za/wp-content/uploads/2021/07/bgs-beef-prego-430x430-2.png",
+        })
+        .where(eq(menuItems.id, 149));
+
+      await db
+        .update(menuItems)
+        .set({
+          price: "R107.90",
+          imageUrl:
+            "https://barcelos.co.za/wp-content/uploads/2021/07/bgs-chicken-schwarma-430x430-1.png",
+        })
+        .where(eq(menuItems.id, 153));
+
+      await db
+        .update(menuItems)
+        .set({
+          price: "R116.90",
+          imageUrl:
+            "https://barcelos.co.za/wp-content/uploads/2021/07/bgs-beef-schwarma-430x430-2.png",
+        })
+        .where(eq(menuItems.id, 150));
+
+      await db
+        .update(menuItems)
+        .set({
+          price: "R119.90",
+          imageUrl:
+            "https://barcelos.co.za/wp-content/uploads/2021/07/combos-double-delicious-430x430-1.png",
+        })
+        .where(eq(menuItems.id, 156));
+
+      await db.insert(menuItems).values([
+        {
+          id: 163,
+          name: "Chicken Livers and one side",
           price: "R61.90",
           imageUrl:
             "https://barcelos.co.za/wp-content/uploads/2021/07/especially-chicken-livers-430x430-1.gif",
