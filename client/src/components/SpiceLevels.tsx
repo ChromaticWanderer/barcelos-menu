@@ -32,11 +32,11 @@ export function SpiceLevels({ className }: SpiceLevelsProps) {
           <div className="mt-1.5 flex flex-col items-center">
             {level.name === "Tangy Lemon" ? (
               <>
-                <span className="text-[11px] leading-none text-white font-medium">Tangy</span>
-                <span className="text-[11px] leading-none text-white font-medium mt-0.5">Lemon</span>
+                <span className="text-[11px] leading-none text-white font-medium uppercase tracking-wide">TANGY</span>
+                <span className="text-[11px] leading-none text-white font-medium mt-0.5 uppercase tracking-wide">LEMON</span>
               </>
             ) : (
-              <span className="text-[11px] leading-tight text-white font-medium whitespace-nowrap">{level.name}</span>
+              <span className="text-[11px] leading-tight text-white font-medium whitespace-nowrap uppercase tracking-wide">{level.name.toUpperCase()}</span>
             )}
           </div>
         </div>
