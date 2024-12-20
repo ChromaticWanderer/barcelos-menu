@@ -56,14 +56,22 @@ export function registerRoutes(app: Express): Server {
       await db.delete(menuItems);
       await db.delete(menuCategories);
 
-      // Get unique categories
-      const uniqueCategories = Array.from(new Set(records.map((record: any) => record.Category).filter(Boolean)));
+      // Get unique categories and clean their names
+      const uniqueCategories = Array.from(
+        new Set(
+          records
+            .map((record: any) => record.Category?.trim())
+            .filter(Boolean)
+        )
+      ).sort();
+      
       console.log("Unique categories:", uniqueCategories);
       
       // Insert categories and build category map
       const categoryMap = new Map();
       for (const categoryName of uniqueCategories) {
-        const [category] = await db.insert(menuCategories)
+        const [category] = await db
+          .insert(menuCategories)
           .values({ name: categoryName })
           .returning();
         categoryMap.set(categoryName, category.id);
@@ -71,13 +79,27 @@ export function registerRoutes(app: Express): Server {
 
       // Insert menu items
       const menuItemsToInsert = records
-        .filter((record: any) => record.Category && record["Item Name"])
-        .map((record: any) => ({
-          categoryId: categoryMap.get(record.Category),
-          name: record["Item Name"],
-          price: record["Regular Price"] || "N/A",
-          imageUrl: record["Image URL"] || "/default-dish.png",
-        }));
+        .filter((record: any) => {
+          const hasCategory = Boolean(record.Category?.trim());
+          const hasName = Boolean(record["Item Name"]?.trim());
+          if (!hasCategory || !hasName) {
+            console.log("Skipping invalid record:", record);
+          }
+          return hasCategory && hasName;
+        })
+        .map((record: any) => {
+          const category = record.Category.trim();
+          const categoryId = categoryMap.get(category);
+          if (!categoryId) {
+            console.log("Warning: No category ID for", category);
+          }
+          return {
+            categoryId,
+            name: record["Item Name"].trim(),
+            price: record["Regular Price"]?.trim() || "N/A",
+            imageUrl: record["Image URL"]?.trim() || "/default-dish.png",
+          };
+        });
 
       console.log("Menu items to insert:", menuItemsToInsert.length);
 
