@@ -662,6 +662,6 @@ export function registerRoutes(app: Express) {
       });
     }
   });
-  
+
   return httpServer;
 }
