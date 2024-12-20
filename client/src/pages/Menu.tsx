@@ -132,6 +132,41 @@ export function Menu() {
           ];
           const bgColor = bgColors[index % bgColors.length];
           
+          // Process items for categories with size variants
+          const processedItems = category.id === 37 || category.id === 34
+            ? category.items.reduce((acc: any[], item) => {
+                const baseName = item.name.replace(/(Regular|Medium|Large)\s/, '').trim();
+                const existingItem = acc.find(i => i.baseName === baseName);
+                
+                if (existingItem) {
+                  const size = item.name.match(/(Regular|Medium|Large)/)?.[0] || '';
+                  existingItem.variants.push({
+                    size,
+                    price: item.price
+                  });
+                } else {
+                  const size = item.name.match(/(Regular|Medium|Large)/)?.[0] || '';
+                  acc.push({
+                    ...item,
+                    baseName,
+                    variants: [{
+                      size,
+                      price: item.price
+                    }],
+                    name: baseName
+                  });
+                }
+                return acc;
+              }, [])
+              .map(item => ({
+                ...item,
+                variants: item.variants.sort((a: any, b: any) => {
+                  const order = { Regular: 1, Medium: 2, Large: 3 };
+                  return (order as any)[a.size] - (order as any)[b.size];
+                })
+              }))
+            : category.items;
+
           return (
             <motion.section
               key={category.id}
@@ -168,7 +203,10 @@ export function Menu() {
                   />
                   {category.name}
                 </motion.h2>
-                <MenuGrid items={category.items} />
+                <MenuGrid 
+                  items={processedItems} 
+                  categoryId={category.id}
+                />
               </motion.div>
             </motion.section>
           );

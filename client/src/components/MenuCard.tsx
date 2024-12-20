@@ -1,11 +1,13 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import type { MenuItem } from "@/types/menu";
+import { PriceVariants } from "./PriceVariants";
 
 interface MenuCardProps {
   item: MenuItem;
+  sizeVariants?: Array<{size: string, price: string}>;
 }
 
-export function MenuCard({ item }: MenuCardProps) {
+export function MenuCard({ item, sizeVariants }: MenuCardProps) {
   return (
     <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 bg-black/40 border-primary/20 group">
       <CardHeader className="p-0">
@@ -23,9 +25,13 @@ export function MenuCard({ item }: MenuCardProps) {
       </CardHeader>
       <CardContent className="p-4 flex flex-col gap-2">
         <h3 className="font-bold text-base md:text-lg uppercase tracking-wide text-white group-hover:text-primary transition-colors duration-300 line-clamp-2">{item.name}</h3>
-        <p className="text-primary text-sm md:text-base font-bold">
-          {item.price !== "N/A" ? (item.price.startsWith('R') ? item.price : `R${item.price}`) : "Price on request"}
-        </p>
+        {sizeVariants ? (
+          <PriceVariants variants={sizeVariants} />
+        ) : (
+          <p className="text-primary text-sm md:text-base font-bold">
+            {item.price !== "N/A" ? (item.price.startsWith('R') ? item.price : `R${item.price}`) : "Price on request"}
+          </p>
+        )}
       </CardContent>
     </Card>
   );
