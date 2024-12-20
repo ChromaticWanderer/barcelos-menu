@@ -44,9 +44,9 @@ export function Menu() {
         const logoContainer = document.querySelector('[data-hide-on-scroll]');
         if (logoContainer) {
           if (currentScrollY > 100) {
-            logoContainer.classList.add('md:hidden');
+            logoContainer.classList.add('hidden');
           } else {
-            logoContainer.classList.remove('md:hidden');
+            logoContainer.classList.remove('hidden');
           }
         }
         lastScrollY = currentScrollY;
