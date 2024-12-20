@@ -1,9 +1,11 @@
 import type { Express } from "express";
+import { createServer } from "http";
 import { db } from "@db";
 import { menuCategories, menuItems } from "@db/schema";
 import { eq } from "drizzle-orm";
 
-export function registerRoutes(app: Express): void {
+export function registerRoutes(app: Express) {
+  const httpServer = createServer(app);
   // Get menu data with categories and items
   app.get("/api/menu", async (_req, res) => {
     try {
@@ -660,4 +662,6 @@ export function registerRoutes(app: Express): void {
       });
     }
   });
+  
+  return httpServer;
 }
