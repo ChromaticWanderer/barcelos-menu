@@ -14,13 +14,13 @@ export function Menu() {
   }, [activeCategory]);
 
   return (
-    <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur">
-        <div className="flex h-16 items-center px-6">
+    <div className="min-h-screen bg-black">
+      <header className="sticky top-0 z-50 w-full border-b border-gray-800 bg-black/95 backdrop-blur">
+        <div className="flex h-20 items-center justify-center px-4 md:px-6">
           <img 
-            src="/Red Side Logo.png"
+            src="Red Side Logo.png"
             alt="Barcelos"
-            className="h-8"
+            className="h-12 md:h-14"
           />
         </div>
         <CategoryNav
@@ -30,14 +30,14 @@ export function Menu() {
         />
       </header>
 
-      <main>
+      <main className="container mx-auto px-4">
         {categories.map((category) => (
           <section
             key={category}
             id={category}
-            className="scroll-mt-20"
+            className="scroll-mt-40"
           >
-            <h2 className="text-2xl font-bold px-6 pt-8">{category}</h2>
+            <h2 className="text-2xl md:text-3xl font-bold px-2 pt-8 uppercase tracking-wide">{category}</h2>
             <MenuGrid items={menuItemsByCategory[category]} />
           </section>
         ))}

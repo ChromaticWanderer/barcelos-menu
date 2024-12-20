@@ -7,9 +7,9 @@ interface MenuCardProps {
 
 export function MenuCard({ item }: MenuCardProps) {
   return (
-    <Card className="overflow-hidden transition-all hover:shadow-lg">
+    <Card className="overflow-hidden transition-all hover:shadow-lg bg-gray-900 border-gray-800">
       <CardHeader className="p-0">
-        <div className="aspect-square overflow-hidden">
+        <div className="aspect-[4/3] overflow-hidden">
           <img 
             src={item.imageUrl} 
             alt={item.itemName}
@@ -18,8 +18,8 @@ export function MenuCard({ item }: MenuCardProps) {
         </div>
       </CardHeader>
       <CardContent className="p-4">
-        <h3 className="font-semibold text-lg mb-2">{item.itemName}</h3>
-        <p className="text-primary text-xl font-bold">{item.regularPrice}</p>
+        <h3 className="font-bold text-base md:text-lg mb-2 uppercase tracking-wide text-gray-100">{item.itemName}</h3>
+        <p className="text-primary text-xl md:text-2xl font-black">{item.regularPrice}</p>
       </CardContent>
     </Card>
   );
