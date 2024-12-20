@@ -73,6 +73,15 @@ export function registerRoutes(app: Express): Server {
       await db.update(menuItems)
         .set({ price: "R72.90" })
         .where(eq(menuItems.id, 154));
+        
+      // Insert Thumbs Up Feast with ID 202
+      await db.insert(menuItems).values({
+        id: 202,
+        name: "Thumbs Up Feast",
+        price: "R215.90",
+        imageUrl: "https://barcelos.co.za/wp-content/uploads/2021/06/barcelos-thumbs-up-feast-430x430-1.jpg",
+        categoryId: 29
+      });
 
       res.json({ success: true });
     } catch (error) {
