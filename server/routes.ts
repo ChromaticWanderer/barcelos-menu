@@ -1,12 +1,13 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { db } from "@db";
-import { menuCategories, menuItems } from "@db/schema";
+import { menuCategories, menuItems, type InsertMenuItem } from "@db/schema";
 import { eq } from "drizzle-orm/expressions";
 import multer from "multer";
 import { parse } from "csv-parse";
 import { Readable } from "stream";
 import path from "path";
+import { z } from "zod";
 
 // Configure multer for CSV file uploads
 const upload = multer({
@@ -18,8 +19,21 @@ const upload = multer({
       return;
     }
     cb(null, true);
+  },
+  limits: {
+    fileSize: 5 * 1024 * 1024, // 5MB limit
   }
 });
+
+// CSV row validation schema
+const csvRowSchema = z.object({
+  category: z.string().min(1, "Category name is required"),
+  name: z.string().min(1, "Item name is required"),
+  price: z.string().regex(/^\d+(\.\d{2})?$/, "Price must be in format: 00.00"),
+  imageUrl: z.string().url("Image URL must be a valid URL").optional().default(""),
+});
+
+type CSVRow = z.infer<typeof csvRowSchema>;
 
 export function registerRoutes(app: Express): Server {
   const httpServer = createServer(app);
@@ -67,19 +81,33 @@ export function registerRoutes(app: Express): Server {
 
     try {
       const fileContent = req.file.buffer.toString('utf-8');
-      const records: any[] = [];
+      const validatedRecords: CSVRow[] = [];
+      const errors: Array<{ row: number; errors: string[] }> = [];
+      let rowNumber = 0;
 
       // Parse CSV
       const parser = parse({
         columns: true,
-        skip_empty_lines: true
+        skip_empty_lines: true,
+        trim: true
       });
 
-      // Process the CSV data
+      // Process and validate CSV data
       parser.on('readable', function() {
         let record;
         while ((record = parser.read()) !== null) {
-          records.push(record);
+          rowNumber++;
+          try {
+            const validatedRow = csvRowSchema.parse(record);
+            validatedRecords.push(validatedRow);
+          } catch (e) {
+            if (e instanceof z.ZodError) {
+              errors.push({
+                row: rowNumber,
+                errors: e.errors.map(err => `${err.path.join('.')}: ${err.message}`)
+              });
+            }
+          }
         }
       });
 
@@ -87,13 +115,31 @@ export function registerRoutes(app: Express): Server {
         const stream = Readable.from(fileContent);
         stream.pipe(parser);
         parser.on('end', resolve);
-        parser.on('error', reject);
+        parser.on('error', (err) => {
+          console.error('CSV parsing error:', err);
+          reject(new Error('Invalid CSV format'));
+        });
       });
+
+      // If there are validation errors, return them
+      if (errors.length > 0) {
+        return res.status(400).json({
+          error: "Validation failed",
+          details: errors
+        });
+      }
+
+      // No records to import
+      if (validatedRecords.length === 0) {
+        return res.status(400).json({
+          error: "No valid records found in CSV"
+        });
+      }
 
       // Insert data into database
       const result = await db.transaction(async (tx) => {
         // Insert categories first
-        const categories = [...new Set(records.map(r => r.category))];
+        const categories = [...new Set(validatedRecords.map(r => r.category))];
         const categoryMap = new Map();
 
         for (const categoryName of categories) {
@@ -114,20 +160,30 @@ export function registerRoutes(app: Express): Server {
               .limit(1);
             if (existing[0]) {
               categoryMap.set(categoryName, existing[0].id);
+            } else {
+              throw new Error(`Failed to create or find category: ${categoryName}`);
             }
           }
         }
 
         // Insert menu items
-        const items = records.map(record => ({
+        const items: InsertMenuItem[] = validatedRecords.map(record => ({
           name: record.name,
           price: record.price,
-          imageUrl: record.imageUrl || "",
-          categoryId: categoryMap.get(record.category)
+          imageUrl: record.imageUrl,
+          categoryId: categoryMap.get(record.category)!
         }));
 
-        await tx.insert(menuItems).values(items).onConflictDoNothing();
-        return { categories: categories.length, items: items.length };
+        const insertedItems = await tx
+          .insert(menuItems)
+          .values(items)
+          .onConflictDoNothing()
+          .returning();
+
+        return {
+          categories: categories.length,
+          items: insertedItems.length
+        };
       });
 
       res.json({
@@ -138,9 +194,10 @@ export function registerRoutes(app: Express): Server {
 
     } catch (error) {
       console.error('Error importing CSV:', error);
+      const errorMessage = error instanceof Error ? error.message : String(error);
       res.status(500).json({
         error: "Failed to import CSV",
-        details: error instanceof Error ? error.message : String(error)
+        details: errorMessage
       });
     }
   });
