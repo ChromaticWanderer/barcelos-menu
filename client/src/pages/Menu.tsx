@@ -9,6 +9,8 @@ export function Menu() {
   const { data, isLoading, error } = useQuery<MenuResponse>({
     queryKey: ["/api/menu"],
     refetchOnMount: true,
+    staleTime: 0,
+    refetchOnMount: true,
     staleTime: 0
   });
 
