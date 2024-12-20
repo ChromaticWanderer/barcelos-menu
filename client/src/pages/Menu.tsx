@@ -27,6 +27,7 @@ export function Menu() {
 
   useEffect(() => {
     let isScrolling = false;
+    let lastScrollY = window.scrollY;
     
     const handleScroll = () => {
       if (isScrolling) return;
@@ -37,6 +38,18 @@ export function Menu() {
         const headerHeight = document.querySelector('header')?.getBoundingClientRect().height || 160;
         const categoryNavHeight = 64; // Height of category navigation
         const totalOffset = headerHeight + categoryNavHeight;
+
+        // Handle logo visibility
+        const currentScrollY = window.scrollY;
+        const logoContainer = document.querySelector('[data-hide-on-scroll]');
+        if (logoContainer) {
+          if (currentScrollY > 100) {
+            logoContainer.classList.add('md:hidden');
+          } else {
+            logoContainer.classList.remove('md:hidden');
+          }
+        }
+        lastScrollY = currentScrollY;
 
         const sections = categories.map(cat => ({
           id: cat.name,
@@ -112,9 +125,13 @@ export function Menu() {
       
       <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-primary/20 bg-[#1a1a1a]/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto">
-          <div className="flex h-24 md:h-28 items-center justify-between px-4 md:px-6 bg-gradient-to-b from-primary/10">
-            <Logo className="h-16 md:h-20" />
-            <SpiceLevels className="flex" />
+          <div className="flex flex-col md:flex-row md:h-28 transition-all duration-300">
+            <div className="flex justify-center py-4 md:py-0 logo-container transition-all duration-300" data-hide-on-scroll>
+              <Logo className="h-16 md:h-20" />
+            </div>
+            <div className="flex justify-center py-2 md:py-0 md:justify-end md:flex-1 px-4 md:px-6 bg-gradient-to-b from-primary/10">
+              <SpiceLevels className="flex" />
+            </div>
           </div>
           <CategoryNav
             categories={categories.map(cat => cat.name)}
