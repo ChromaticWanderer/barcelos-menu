@@ -24,7 +24,7 @@ export function Menu() {
     // Scroll to category section
     const element = document.getElementById(category);
     if (element) {
-      const headerOffset = 140; // Account for fixed header height
+      const headerOffset = 160; // Account for fixed header height and padding
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -74,7 +74,7 @@ export function Menu() {
           <section
             key={category.id}
             id={category.name}
-            className="scroll-mt-40"
+            className="scroll-mt-48"
           >
             <h2 className="text-2xl md:text-3xl font-bold px-2 pt-8 uppercase tracking-wide text-white">{category.name}</h2>
             <MenuGrid items={category.items} />
