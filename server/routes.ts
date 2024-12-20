@@ -29,6 +29,18 @@ export function registerRoutes(app: Express): Server {
       await db.update(menuItems)
         .set({ price: "R95.90" })
         .where(eq(menuItems.id, 139));
+      
+      await db.update(menuItems)
+        .set({ price: "R88.90" })
+        .where(eq(menuItems.id, 140));
+        
+      await db.update(menuItems)
+        .set({ price: "R107.90" })
+        .where(eq(menuItems.id, 141));
+        
+      await db.update(menuItems)
+        .set({ price: "R105.90" })
+        .where(eq(menuItems.id, 142));
 
       res.json({ success: true });
     } catch (error) {
