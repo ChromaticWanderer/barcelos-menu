@@ -1,17 +1,32 @@
-import { useState, useEffect } from "react";
-import { categories, menuItemsByCategory } from "@/data/menu";
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { CategoryNav } from "@/components/CategoryNav";
 import { MenuGrid } from "@/components/MenuGrid";
+import type { MenuResponse } from "@/types/menu";
 
 export function Menu() {
-  const [activeCategory, setActiveCategory] = useState(categories[0]);
+  const { data, isLoading, error } = useQuery<MenuResponse>({
+    queryKey: ["/api/menu"],
+  });
 
-  useEffect(() => {
-    const element = document.getElementById(activeCategory);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [activeCategory]);
+  const categories = data?.categories || [];
+  const [activeCategory, setActiveCategory] = useState(categories[0]?.name);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-white">Loading menu...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-red-500">Error loading menu. Please try again later.</div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-black">
@@ -24,7 +39,7 @@ export function Menu() {
           />
         </div>
         <CategoryNav
-          categories={categories}
+          categories={categories.map(cat => cat.name)}
           activeCategory={activeCategory}
           onSelectCategory={setActiveCategory}
         />
@@ -33,12 +48,12 @@ export function Menu() {
       <main className="container mx-auto px-4">
         {categories.map((category) => (
           <section
-            key={category}
-            id={category}
+            key={category.id}
+            id={category.name}
             className="scroll-mt-40"
           >
-            <h2 className="text-2xl md:text-3xl font-bold px-2 pt-8 uppercase tracking-wide">{category}</h2>
-            <MenuGrid items={menuItemsByCategory[category]} />
+            <h2 className="text-2xl md:text-3xl font-bold px-2 pt-8 uppercase tracking-wide text-white">{category.name}</h2>
+            <MenuGrid items={category.items} />
           </section>
         ))}
       </main>

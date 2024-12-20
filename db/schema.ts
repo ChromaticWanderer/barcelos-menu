@@ -1,4 +1,4 @@
-import { pgTable, text, serial, integer, relations } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
 export const menuCategories = pgTable("menu_categories", {
@@ -8,23 +8,11 @@ export const menuCategories = pgTable("menu_categories", {
 
 export const menuItems = pgTable("menu_items", {
   id: serial("id").primaryKey(),
-  categoryId: integer("category_id").notNull().references(() => menuCategories.id),
+  categoryId: integer("category_id").notNull(),
   name: text("name").notNull(),
   price: text("price").notNull(),
   imageUrl: text("image_url").notNull(),
 });
-
-// Define relations
-export const menuCategoriesRelations = relations(menuCategories, ({ many }) => ({
-  items: many(menuItems),
-}));
-
-export const menuItemsRelations = relations(menuItems, ({ one }) => ({
-  category: one(menuCategories, {
-    fields: [menuItems.categoryId],
-    references: [menuCategories.id],
-  }),
-}));
 
 // Schemas for validation
 export const insertCategorySchema = createInsertSchema(menuCategories);

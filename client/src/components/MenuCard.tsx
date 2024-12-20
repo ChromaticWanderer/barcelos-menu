@@ -12,7 +12,7 @@ export function MenuCard({ item }: MenuCardProps) {
         <div className="aspect-[4/3] overflow-hidden">
           <img 
             src={item.imageUrl} 
-            alt={item.itemName}
+            alt={item.name}
             className="h-full w-full object-cover transition-transform hover:scale-105"
           />
         </div>
