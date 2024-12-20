@@ -7,6 +7,8 @@ import type { MenuResponse } from "@/types/menu";
 export function Menu() {
   const { data, isLoading, error } = useQuery<MenuResponse>({
     queryKey: ["/api/menu"],
+    refetchOnMount: true,
+    staleTime: 0
   });
 
   const categories = data?.categories || [];
@@ -34,6 +36,8 @@ export function Menu() {
       });
     }
   };
+
+  console.log("Menu data:", data); // Add logging for debugging
 
   if (isLoading) {
     return (
