@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { Logo } from "@/components/Logo";
 import { CategoryNav } from "@/components/CategoryNav";
 import { MenuGrid } from "@/components/MenuGrid";
 import type { MenuResponse } from "@/types/menu";
@@ -60,11 +61,7 @@ export function Menu() {
     <div className="min-h-screen bg-black">
       <header className="sticky top-0 z-50 w-full border-b border-gray-800 bg-black/95 backdrop-blur">
         <div className="flex h-24 md:h-28 items-center justify-center px-4 md:px-6">
-          <img 
-            src="/Logoupdate.png"
-            alt="Barcelos"
-            className="h-16 md:h-20"
-          />
+          <Logo className="h-16 md:h-20" />
         </div>
         <CategoryNav
           categories={categories.map(cat => cat.name)}
